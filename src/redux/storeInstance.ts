@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import tokens from "./reducers/tokens";
 
 export const store = configureStore({
-    reducer: {}
+    reducer: {
+        tokens
+    }
 })
 
 

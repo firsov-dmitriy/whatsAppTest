@@ -1,29 +1,31 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type TokensInitialState = {
-    idInstance ?: string;
-    apiTokenInstance? : string
-}
+  idInstance: string;
+  apiTokenInstance: string;
+};
 
-const initialState:TokensInitialState = {
-    idInstance: undefined,
-    apiTokenInstance: undefined
-}
+const initialState: TokensInitialState = {
+  idInstance: '',
+  apiTokenInstance: '',
+};
 
-export const tokensSlice = createSlice({
-    name: "tokensSlice",
-    initialState,
-    reducers: {
-        setTokens(state, action: PayloadAction<Required<TokensInitialState>>){
-            state = action.payload
-        },
-        removeTokens(state){
-            state
-            = {}
-        }
-    }
-})
+export const tokens = createSlice({
+  name: 'tokens',
+  initialState,
+  reducers: {
+    setTokens(state, action: PayloadAction<Required<TokensInitialState>>) {
+      const { idInstance, apiTokenInstance } = action.payload;
+      localStorage.setItem('tokens', JSON.stringify(action.payload));
 
-export const {setTokens, removeTokens} = tokensSlice.actions
+      state.idInstance = idInstance;
+      state.apiTokenInstance = apiTokenInstance;
+    },
+    removeTokens(state) {
+      state = initialState;
+      localStorage.removeItem('tokens');
+    },
+  },
+});
 
-export default tokensSlice.reducer
+export const { setTokens, removeTokens } = tokens.actions;

@@ -3,13 +3,15 @@ import { Routes } from 'react-router';
 import React, { useEffect } from 'react';
 import { PublicRoutes } from '../../resource/routes';
 import { useAppSelector } from '@/redux/hooks/useAppSelector';
+import { useAuthInfo } from '@/hooks/useAuthInfo';
 
 const Router: React.FC = () => {
-  const tokens = useAppSelector((state) => state.tokens);
+  const tokens = useAuthInfo();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!tokens.idInstance || !tokens.apiTokenInstance) {
+    if (!tokens) {
       navigate('/');
     }
   }, [tokens]);

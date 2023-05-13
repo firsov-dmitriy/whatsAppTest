@@ -9,17 +9,21 @@ import { useNotification } from '@/hooks/useNotification';
 import { useDispatch } from 'react-redux';
 import { setTokens } from '@/redux/reducers/tokens';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '@/redux/hooks/useAppDispatch';
+import { useAppSelector } from '@/redux/hooks/useAppSelector';
 export type TMainPageModuleProps = {};
 
 const _MainPageModule = () => {
   const { createNotificationError } = useNotification();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const tokens = useAppSelector((state) => state.tokens);
   const navigate = useNavigate();
 
   const onSubmit = useCallback(
-    (values: Required<TokensValue>) => {
+    async (values: Required<TokensValue>) => {
       try {
         dispatch(setTokens(values));
+
         navigate('chat');
       } catch (error) {
         createNotificationError('Произошла ошибка');

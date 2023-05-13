@@ -21,5 +21,14 @@ export const mainTheme = createTheme({
         },
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#d1d7db',
+          margin: '0',
+          paddingLeft: '20px',
+        },
+      },
+    },
   },
 });

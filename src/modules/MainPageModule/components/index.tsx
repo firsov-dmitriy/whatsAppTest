@@ -2,7 +2,7 @@ import { useForm } from '@/hooks/useForm';
 import { FormProvider } from 'react-hook-form';
 import React, { useCallback } from 'react';
 import { FormInputField } from '@/package';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { TokensFields, TokensValue, useFormTokens } from '../utils/form';
 import { useNotification } from '@/hooks/useNotification';
@@ -36,21 +36,23 @@ const _MainPageModule = () => {
   return (
     <Box width={450} p='60px 0' m='0 auto'>
       <FormProvider {...form}>
-        <FormInputField
-          name={TokensFields.IdInstance}
-          placeholder='idInstance'
-          variant='outlined'
-          label='Введите ваш idInstance'
-        />
-        <FormInputField
-          name={TokensFields.ApiToken}
-          placeholder='apiTokenInstance'
-          variant='outlined'
-          label='Введите ваш apiTokenInstance'
-        />
-        <Button onClick={submit} endIcon={<ArrowForwardIcon />} fullWidth variant='contained'>
-          Дальше
-        </Button>
+        <Stack spacing={'20px'}>
+          <FormInputField
+            name={TokensFields.IdInstance}
+            placeholder='idInstance'
+            variant='outlined'
+            label='Введите ваш idInstance'
+          />
+          <FormInputField
+            name={TokensFields.ApiToken}
+            placeholder='apiTokenInstance'
+            variant='outlined'
+            label='Введите ваш apiTokenInstance'
+          />
+          <Button onClick={submit} endIcon={<ArrowForwardIcon />} fullWidth variant='contained'>
+            Дальше
+          </Button>
+        </Stack>
       </FormProvider>
     </Box>
   );

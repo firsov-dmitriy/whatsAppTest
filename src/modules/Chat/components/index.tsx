@@ -23,8 +23,9 @@ const _Chat = ({}: TChatProps) => {
           <ChatList onClick={onClick} />
         </Grid>
         <Grid item xs={10}>
+          
           <MessageList chatId={chatId} />
-          <ChatFields />
+          <ChatFields chatId={chatId} />
         </Grid>
       </Grid>
     </FormProvider>

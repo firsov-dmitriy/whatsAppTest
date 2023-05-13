@@ -48,7 +48,9 @@ const _ChatList = ({ onClick }: TChatListProps) => {
         Чаты
       </Typography>
       {numbers.map((item) => (
-        <Row onClick={onClick}>{item.chatId}</Row>
+        <Row onClick={onClick} key={item.chatId}>
+          {item.chatId}
+        </Row>
       ))}
       <InputField
         label='Номер'

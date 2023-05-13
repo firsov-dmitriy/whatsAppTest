@@ -15,11 +15,9 @@ import {
 } from '@mui/material';
 import React, { ReactNode } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { StyledNavLink } from './styles';
+import { StyledAppBarWrapper, StyledNavLink } from './styles';
 
-export type THeaderProps = {
-  window?: () => Window;
-};
+export type THeaderProps = {};
 
 const drawerWidth = 240;
 const navItems: Array<{ title: ReactNode; link: string }> = [
@@ -27,43 +25,15 @@ const navItems: Array<{ title: ReactNode; link: string }> = [
   { title: 'About', link: '/about' },
 ];
 
-const _Header = ({ window }: THeaderProps) => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
-
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant='h6' sx={{ my: 2 }}>
-        MUI
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map(({ title, link }) => (
-          <ListItem key={link} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={link} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
-
-  const container = window !== undefined ? () => window().document.body : undefined;
-
+const _Header = ({}: THeaderProps) => {
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+    <StyledAppBarWrapper>
       <AppBar component='nav'>
         <Toolbar>
           <IconButton
             color='inherit'
             aria-label='open drawer'
             edge='start'
-            onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <MenuIcon />
@@ -84,24 +54,7 @@ const _Header = ({ window }: THeaderProps) => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box component='nav'>
-        <Drawer
-          container={container}
-          variant='temporary'
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-    </Box>
+    </StyledAppBarWrapper>
   );
 };
 

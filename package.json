@@ -12,6 +12,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.1.0",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.0",
     "@reduxjs/toolkit": "^1.9.5",
     "dotenv": "^16.0.3",
@@ -23,6 +25,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
     "router-dom": "^2.2.11",
+    "styled-components": "^6.0.0-rc.1",
     "url": "^0.11.0",
     "yup": "^1.1.1"
   },

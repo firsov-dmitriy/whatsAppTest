@@ -11,9 +11,10 @@ import { InputField } from '@/package';
 
 export type TChatFieldsProps = {
   chatId?: string;
+  refreshMessage?: (number: string) => Promise<void>;
 };
 
-const _ChatFields = ({ chatId }: TChatFieldsProps) => {
+const _ChatFields = ({ chatId, refreshMessage }: TChatFieldsProps) => {
   const [message, setMessage] = useState<string | undefined>();
   const { createNotificationError } = useNotification();
   const tokens = useAuthInfo();
@@ -28,11 +29,13 @@ const _ChatFields = ({ chatId }: TChatFieldsProps) => {
       try {
         await sendMessage({ message, number: chatId, ...tokens }).unwrap();
         setMessage(undefined);
+        refreshMessage && refreshMessage(chatId);
       } catch (error) {
         createNotificationError('Произошла ошибка');
       }
     }
-  }, [chatId, createNotificationError, message, sendMessage, tokens]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chatId, createNotificationError, message, refreshMessage, sendMessage]);
   return (
     <Box display='flex' alignItems='center'>
       <InputField

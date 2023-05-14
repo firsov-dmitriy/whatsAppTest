@@ -41,21 +41,26 @@ const _MessageList = ({ chatId }: TMessageListProps) => {
   return (
     <Box bgcolor='white' padding={1}>
       <StyledMessageListWrapper>
-        {isLoading && <LinearProgress />}
-        {messageList &&
-          [...messageList]?.reverse().map((item) => {
-            const date = format(new Date(item.timestamp * 1000), 'hh:mm:ss');
-            return (
-              <Stack flexDirection='row' alignItems='center' gap='5px' key={item.idMessage}>
-                <Typography color='gray' fontSize='12px'>
-                  {date}
-                </Typography>
-                <Chip label={item.textMessage} />
-              </Stack>
-            );
-          })}
+        {isLoading ? (
+          <LinearProgress />
+        ) : (
+          <>
+            {messageList &&
+              [...messageList]?.reverse().map((item) => {
+                const date = format(new Date(item.timestamp * 1000), 'hh:mm:ss');
+                return (
+                  <Stack flexDirection='row' alignItems='center' gap='5px' key={item.idMessage}>
+                    <Typography color='gray' fontSize='12px'>
+                      {date}
+                    </Typography>
+                    <Chip label={item.textMessage} />
+                  </Stack>
+                );
+              })}
+          </>
+        )}
       </StyledMessageListWrapper>
-      <ChatFields chatId={chatId} />
+      <ChatFields refreshMessage={refreshList} chatId={chatId} />
     </Box>
   );
 };

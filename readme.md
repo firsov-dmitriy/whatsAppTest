@@ -1,3 +1,11 @@
+## Clone
+
+Изначально нужно склонить проект к себе
+
+```bash
+git clone https://github.com/firsov-dmitriy/whatsAppTest.git
+```
+
 ## Установка зависимостей
 
 Use the package manager npm

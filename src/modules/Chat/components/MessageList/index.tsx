@@ -29,12 +29,14 @@ const _MessageList = ({ chatId }: TMessageListProps) => {
         }
       }
     },
-    [createNotificationError, getChatHistory, isLoading, tokens],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   );
 
   useEffect(() => {
     if (chatId) refreshList(chatId);
-  }, [chatId, refreshList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Box bgcolor='white' padding={1}>

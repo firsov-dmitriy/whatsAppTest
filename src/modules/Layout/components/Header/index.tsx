@@ -1,31 +1,15 @@
-import {
-  Box,
-  CssBaseline,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
-  Drawer,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from '@mui/material';
 import React, { ReactNode } from 'react';
+import { Box, AppBar, Toolbar, IconButton, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+
 import { StyledAppBarWrapper, StyledNavLink } from './styles';
 
-export type THeaderProps = {};
-
-const drawerWidth = 240;
 const navItems: Array<{ title: ReactNode; link: string }> = [
   { title: 'Main', link: '/' },
   { title: 'Chat', link: '/chat' },
 ];
 
-const _Header = ({}: THeaderProps) => {
+const _Header = () => {
   return (
     <StyledAppBarWrapper>
       <AppBar component='nav'>

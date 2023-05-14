@@ -1,7 +1,7 @@
-import { InputField } from '@/package';
+import React, { ReactNode, useCallback, useState } from 'react';
 import { Box, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 
-import React, { ReactNode, useCallback, useState } from 'react';
+import { InputField } from '@/package';
 export type OnClick = (chatId: string) => void;
 function Row(props: { children: ReactNode; onClick: OnClick }) {
   const { children, onClick } = props;
@@ -22,6 +22,7 @@ const _ChatList = ({ onClick }: TChatListProps) => {
   const [value, setValue] = useState<string | undefined>();
   const [errorMsg, setErrorMsg] = useState<string | undefined>();
 
+  // eslint-disable-next-line no-useless-escape, react-hooks/exhaustive-deps
   const regExp = /^(\7|7)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
 
   const onChange = useCallback(
@@ -45,7 +46,7 @@ const _ChatList = ({ onClick }: TChatListProps) => {
         }
       }
     },
-    [value, setValue],
+    [numbers, regExp, value],
   );
   return (
     <Box

@@ -1,7 +1,5 @@
-import { Box } from '@mui/material';
 import React from 'react';
-
-export type TFooterProps = {};
+import { Box } from '@mui/material';
 
 const _Footer = () => {
   return (

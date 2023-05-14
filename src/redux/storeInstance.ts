@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import { tokens } from './reducers/tokens';
 import notification from './reducers/notification';
+
 import { chatApi } from '@/modules/Chat';
 
 export const store = configureStore({

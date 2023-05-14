@@ -1,10 +1,12 @@
-import { CircularProgress, Box, Typography, IconButton } from '@mui/material';
 import React, { useCallback, useEffect } from 'react';
-import { useDeleteNotificationMutation, useLazyGetNotificationQuery } from '../../api/chatApi';
+import { CircularProgress, Box, Typography, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useAuthInfo } from '@/hooks/useAuthInfo';
-import { useNotification } from '@/hooks/useNotification';
+
 import { ChatFields } from '../ChatFields';
+import { useDeleteNotificationMutation, useLazyGetNotificationQuery } from '../../api/chatApi';
+
+import { useNotification } from '@/hooks/useNotification';
+import { useAuthInfo } from '@/hooks/useAuthInfo';
 
 export type TOneMessageProps = {
   chatId?: string;
@@ -28,7 +30,7 @@ const _OneMessage = ({ chatId }: TOneMessageProps) => {
         }
       }
     },
-    [deleteNotification, createNotificationSuccess, createNotificationError],
+    [createNotificationError, createNotificationSuccess, deleteNotification, tokens],
   );
 
   useEffect(() => {
@@ -37,13 +39,13 @@ const _OneMessage = ({ chatId }: TOneMessageProps) => {
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, [fetchMessage, deleteNotification]);
+  }, [fetchMessage, tokens]);
 
   useEffect(() => {
     if (message?.body && message.body.sendByApi && tokens) {
       deleteNotification({ ...tokens, receiptId: message.receiptId });
     }
-  }, [message, deleteNotification]);
+  }, [deleteNotification, message?.body, message?.receiptId, tokens]);
   return (
     <>
       {messageLoading ? (

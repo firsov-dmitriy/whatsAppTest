@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect } from 'react';
-import { useGetChatHistoryMutation } from '../../api/chatApi';
-import { useAuthInfo } from '@/hooks/useAuthInfo';
-import { Box, Chip, LinearProgress, Stack, Typography } from '@mui/material';
-import { StyledMessageListWrapper } from './styles';
 import { format } from 'date-fns';
+import { Box, Chip, LinearProgress, Stack, Typography } from '@mui/material';
+
 import { ChatFields } from '../ChatFields';
+import { useGetChatHistoryMutation } from '../../api/chatApi';
+
 import { useNotification } from '@/hooks/useNotification';
+import { useAuthInfo } from '@/hooks/useAuthInfo';
+
+import { StyledMessageListWrapper } from './styles';
 
 export type TMessageListProps = {
   chatId?: string;
@@ -26,12 +29,12 @@ const _MessageList = ({ chatId }: TMessageListProps) => {
         }
       }
     },
-    [getChatHistory, createNotificationError],
+    [createNotificationError, getChatHistory, isLoading, tokens],
   );
 
   useEffect(() => {
     if (chatId) refreshList(chatId);
-  }, [refreshList]);
+  }, [chatId, refreshList]);
 
   return (
     <Box bgcolor='white' padding={1}>

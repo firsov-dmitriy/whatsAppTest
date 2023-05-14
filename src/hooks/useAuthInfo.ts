@@ -1,4 +1,4 @@
-import { TokensFields, TokensValue } from '@/modules/MainPageModule/utils/form';
+import { TokensValue } from '@/modules/MainPageModule/utils/form';
 
 export const useAuthInfo = () => {
   const tokensString = localStorage.getItem('tokens');

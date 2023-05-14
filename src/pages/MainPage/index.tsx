@@ -1,7 +1,6 @@
-import { Layout, MainPageModule } from '@/modules';
 import React from 'react';
 
-export type TMainPageProps = {};
+import { Layout, MainPageModule } from '@/modules';
 
 const _MainPage = () => {
   return (

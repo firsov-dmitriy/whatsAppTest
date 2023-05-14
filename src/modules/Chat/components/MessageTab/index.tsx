@@ -1,11 +1,12 @@
-import { Box, Tabs, Typography } from '@mui/material';
 import React, { memo, useCallback, useMemo } from 'react';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
+import { Box } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
-import { MessageList } from '../MessageList';
+import TabList from '@mui/lab/TabList';
+import TabContext from '@mui/lab/TabContext';
+
 import { OneMessage } from '../OneMessage';
+import { MessageList } from '../MessageList';
 export type TMessageTabProps = {
   chatId?: string;
 };

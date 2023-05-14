@@ -1,5 +1,6 @@
-import { Box, CircularProgress, Container } from '@mui/material';
 import React, { ReactNode } from 'react';
+import { CircularProgress } from '@mui/material';
+
 import { StyledContainer, StyledProgressWrapper } from './styles';
 
 export type TMainProps = {

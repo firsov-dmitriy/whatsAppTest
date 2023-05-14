@@ -1,5 +1,5 @@
-import { Box, Container } from '@mui/material';
 import { styled } from 'styled-components';
+import { Box, Container } from '@mui/material';
 
 export const StyledContainer = styled(Container)`
   flex: 1 0 auto;

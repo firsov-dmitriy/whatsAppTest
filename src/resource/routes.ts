@@ -1,5 +1,6 @@
-import type React from 'react';
 import { Chat, MainPage } from '../pages';
+
+import type React from 'react';
 
 export const ROUTES = {
   main: '/',

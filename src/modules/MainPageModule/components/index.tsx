@@ -1,22 +1,20 @@
-import { useForm } from '@/hooks/useForm';
+import { useNavigate } from 'react-router-dom';
 import { FormProvider } from 'react-hook-form';
 import React, { useCallback } from 'react';
-import { FormInputField } from '@/package';
 import { Box, Button, Stack } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 import { TokensFields, TokensValue, useFormTokens } from '../utils/form';
+
 import { useNotification } from '@/hooks/useNotification';
-import { useDispatch } from 'react-redux';
+
 import { setTokens } from '@/redux/reducers/tokens';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '@/redux/hooks/useAppDispatch';
-import { useAppSelector } from '@/redux/hooks/useAppSelector';
-export type TMainPageModuleProps = {};
+import { FormInputField } from '@/package';
 
 const _MainPageModule = () => {
   const { createNotificationError } = useNotification();
   const dispatch = useAppDispatch();
-  const tokens = useAppSelector((state) => state.tokens);
   const navigate = useNavigate();
 
   const onSubmit = useCallback(
@@ -29,7 +27,7 @@ const _MainPageModule = () => {
         createNotificationError('Произошла ошибка');
       }
     },
-    [createNotificationError, setTokens],
+    [createNotificationError, dispatch, navigate],
   );
 
   const { form, submit } = useFormTokens(onSubmit);

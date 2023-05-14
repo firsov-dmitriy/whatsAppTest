@@ -1,15 +1,18 @@
-import { memo, useEffect, useState } from 'react';
-import { Header, THeaderProps } from './Header';
-import { Footer, TFooterProps } from './Footer';
-import { Main, TMainProps } from './Main';
-import { useAppDispatch } from '@/redux/hooks/useAppDispatch';
-import { useAppSelector } from '@/redux/hooks/useAppSelector';
-import { removeNotification } from '@/redux/reducers/notification';
-import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { memo, useEffect, useState } from 'react';
+import React from 'react';
 import { Snackbar, Alert } from '@mui/material';
 
-export interface LayoutProps extends THeaderProps, TFooterProps, TMainProps {}
+import { Main, TMainProps } from './Main';
+import { Header } from './Header';
+import { Footer } from './Footer';
+
+import { removeNotification } from '@/redux/reducers/notification';
+import { useAppSelector } from '@/redux/hooks/useAppSelector';
+import { useAppDispatch } from '@/redux/hooks/useAppDispatch';
+
+// eslint-disable-next-line prettier/prettier
+export interface LayoutProps extends TMainProps { }
 
 const _Layout = ({ children, loading }: LayoutProps) => {
   const path = useState('');

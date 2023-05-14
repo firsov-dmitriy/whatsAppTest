@@ -1,12 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { ChatList } from './ChatList';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Grid } from '@mui/material';
+
 import { MessageTab } from './MessageTab';
+import { ChatList } from './ChatList';
 
-export type TChatProps = {};
-
-const _Chat = ({}: TChatProps) => {
+const _Chat = () => {
   const form = useForm();
   const [chatId, setChatId] = useState<string | undefined>();
 
@@ -18,7 +17,7 @@ const _Chat = ({}: TChatProps) => {
         setChatId(chatId);
       }
     },
-    [setChatId],
+    [memoChatId],
   );
 
   return (

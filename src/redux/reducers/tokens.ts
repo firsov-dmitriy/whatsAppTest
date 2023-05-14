@@ -22,6 +22,7 @@ export const tokens = createSlice({
       state.apiTokenInstance = apiTokenInstance;
     },
     removeTokens(state) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       state = initialState;
       localStorage.removeItem('tokens');
     },

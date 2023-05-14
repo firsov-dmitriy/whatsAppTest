@@ -1,2 +1,2 @@
-export { Layout } from "./Layout"
-export { MainPageModule } from "./MainPageModule"
+export { Layout } from './Layout';
+export { MainPageModule } from './MainPageModule';

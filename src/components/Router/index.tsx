@@ -1,18 +1,22 @@
-import { Route, useNavigate } from 'react-router-dom';
+import { Route, useLocation, useNavigate } from 'react-router-dom';
 import { Routes } from 'react-router';
 import React, { useEffect } from 'react';
+
 import { PublicRoutes } from '../../resource/routes';
-import { useAppSelector } from '@/redux/hooks/useAppSelector';
+
+import { useAuthInfo } from '@/hooks/useAuthInfo';
 
 const Router: React.FC = () => {
-  const tokens = useAppSelector((state) => state.tokens);
+  const tokens = useAuthInfo();
+  const { pathname } = useLocation();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!tokens.idInstance || !tokens.apiTokenInstance) {
+    if (!tokens) {
       navigate('/');
     }
-  }, [tokens]);
+  }, [navigate, tokens, pathname]);
 
   return (
     <Routes>

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAppDispatch } from '@/redux/hooks/useAppDispatch';
 import { setNotification } from '@/redux/reducers/notification';
+import { useAppDispatch } from '@/redux/hooks/useAppDispatch';
 
 export const useNotification = () => {
   const dispatch = useAppDispatch();

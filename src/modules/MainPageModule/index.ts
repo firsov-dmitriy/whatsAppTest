@@ -1,1 +1,1 @@
-export { MainPageModule } from "./components/index"
+export { MainPageModule } from './components/index';

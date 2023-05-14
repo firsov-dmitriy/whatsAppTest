@@ -1,6 +1,8 @@
-import { TOnSubmitFormSyncCb, useForm } from '@/hooks/useForm';
-import { FORM_MASSAGE } from '@/resource/constants';
 import * as Yup from 'yup';
+
+import { TOnSubmitFormSyncCb, useForm } from '@/hooks/useForm';
+
+import { FORM_MASSAGE } from '@/resource/constants';
 
 export enum TokensFields {
   IdInstance = 'idInstance',

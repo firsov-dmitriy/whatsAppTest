@@ -1,0 +1,7 @@
+ignores: [
+  "prettier",
+  "@uspect/eslint-config",
+  "@uspect/eslint-config-react",
+  "@uspect/prettier-config"
+]
+skip-missing: false

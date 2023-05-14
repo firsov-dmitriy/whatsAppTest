@@ -17,7 +17,16 @@ export const mainTheme = createTheme({
     MuiFormControl: {
       styleOverrides: {
         root: {
-          minHeight: '70px !important',
+          minHeight: '0 !important',
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#d1d7db',
+          margin: '0',
+          paddingLeft: '20px',
         },
       },
     },

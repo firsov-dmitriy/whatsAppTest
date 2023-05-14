@@ -1,6 +1,7 @@
-import { InputField, TInputFieldProps } from '@/package/formElement';
-import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import React from 'react';
+
+import { InputField, TInputFieldProps } from '@/package/formElement';
 export interface TFormInputFieldProps extends Omit<TInputFieldProps, 'value' | 'onChange'> {
   name: string;
 }

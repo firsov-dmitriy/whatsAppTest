@@ -26,7 +26,7 @@ export type PostMessageResponse = { idMessage: string };
 
 export type GetMessageRequest = { idInstance?: string; apiTokenInstance?: string } | null;
 export type GetMessageResponse = {
-  receiptId: string;
+  receiptId: number;
   body: {
     typeWebhook: string;
     instanceData: {
@@ -36,16 +36,27 @@ export type GetMessageResponse = {
     };
     timestamp: number;
     idMessage: string;
+    sendByApi: boolean;
     senderData: {
       chatId: string;
       sender: string;
       senderName: string;
     };
+
     messageData: {
+      extendedTextMessageData: {
+        text: string;
+      };
       typeMessage: string;
       textMessageData: {
         textMessage: string;
       };
     };
   };
+};
+
+export type DeleteNotification = {
+  idInstance?: string;
+  apiTokenInstance?: string;
+  receiptId: number;
 };

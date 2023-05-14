@@ -17,12 +17,14 @@ const _ChatFields = ({ chatId }: TChatFieldsProps) => {
 
   const [sendMessage, {}] = usePostMessageMutation();
   const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setMessage(event.target.value);
+    const value = event.target.value;
+    setMessage(value);
   };
   const onSend = useCallback(async () => {
     if (message && tokens?.idInstance && chatId) {
       try {
-        await sendMessage({ message, number: chatId, ...tokens });
+        await sendMessage({ message, number: chatId, ...tokens }).unwrap();
+        setMessage(undefined);
       } catch (error) {
         createNotificationError('Произошла ошибка');
       }

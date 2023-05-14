@@ -18,12 +18,16 @@ export type TChatListProps = {
   onClick: OnClick;
 };
 const _ChatList = ({ onClick }: TChatListProps) => {
-  const [numbers, setNumbers] = useState(new Array(5).fill({ chatId: 89960661103 }));
+  const [numbers, setNumbers] = useState<{ chatId: string }[]>([]);
   const [value, setValue] = useState<string | undefined>();
+  const [errorMsg, setErrorMsg] = useState<string | undefined>();
+
+  const regExp = /^(\7|7)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
 
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setValue(event.target.value);
+      const value = event.target.value;
+      setValue(value);
     },
     [setValue],
   );
@@ -31,9 +35,14 @@ const _ChatList = ({ onClick }: TChatListProps) => {
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       const code = event.code;
 
-      if (code.toLowerCase() === 'enter' && !numbers.includes(value)) {
-        setNumbers((prev) => [...prev, { chatId: value }]);
-        setValue(undefined);
+      if (value && code?.toLowerCase() === 'enter' && !numbers.includes({ chatId: value })) {
+        if (regExp.test(value)) {
+          setNumbers((prev) => [...prev, { chatId: value }]);
+          setValue(undefined);
+          setErrorMsg(undefined);
+        } else {
+          setErrorMsg('Не валидный номер телефона');
+        }
       }
     },
     [value, setValue],
@@ -47,11 +56,12 @@ const _ChatList = ({ onClick }: TChatListProps) => {
       <Typography fontSize={32} m='0 auto'>
         Чаты
       </Typography>
-      {numbers.map((item) => (
-        <Row onClick={onClick} key={item.chatId}>
-          {item.chatId}
-        </Row>
-      ))}
+      {numbers &&
+        numbers.map((item) => (
+          <Row onClick={onClick} key={item.chatId}>
+            {item.chatId}
+          </Row>
+        ))}
       <InputField
         label='Номер'
         size='small'
@@ -59,6 +69,7 @@ const _ChatList = ({ onClick }: TChatListProps) => {
         value={value}
         onKeyDown={onKeyDown}
         onChange={onChange}
+        error={errorMsg}
       />
     </Box>
   );

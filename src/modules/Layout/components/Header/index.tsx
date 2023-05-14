@@ -22,7 +22,7 @@ export type THeaderProps = {};
 const drawerWidth = 240;
 const navItems: Array<{ title: ReactNode; link: string }> = [
   { title: 'Main', link: '/' },
-  { title: 'About', link: '/about' },
+  { title: 'Chat', link: '/chat' },
 ];
 
 const _Header = ({}: THeaderProps) => {
@@ -43,7 +43,7 @@ const _Header = ({}: THeaderProps) => {
             component='div'
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Whats App Test
           </Typography>
           <Box sx={{ display: 'flex', gap: '20px' }}>
             {navItems.map(({ title, link }) => (

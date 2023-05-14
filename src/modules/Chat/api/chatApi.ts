@@ -1,6 +1,7 @@
 import { useAppSelector } from '@/redux/hooks/useAppSelector';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
+  DeleteNotification,
   GetChatHistoryRequest,
   GetChatHistoryResponse,
   GetMessageRequest,
@@ -33,10 +34,18 @@ export const chatApi = createApi({
         };
       },
     }),
-    getMessage: build.query<GetMessageResponse, GetMessageRequest>({
+    getNotification: build.query<GetMessageResponse, GetMessageRequest>({
       query: (arg) => {
         return {
           url: `waInstance${arg?.idInstance}/ReceiveNotification/${arg?.apiTokenInstance}`,
+        };
+      },
+    }),
+    deleteNotification: build.mutation<void, DeleteNotification>({
+      query: (arg) => {
+        return {
+          url: `waInstance${arg?.idInstance}/DeleteNotification/${arg?.apiTokenInstance}/${arg.receiptId}`,
+          method: 'DELETE',
         };
       },
     }),
@@ -46,6 +55,7 @@ export const chatApi = createApi({
 export const {
   useGetChatHistoryMutation,
   usePostMessageMutation,
-  useGetMessageQuery,
-  useLazyGetMessageQuery,
+  useLazyGetNotificationQuery,
+  useGetNotificationQuery,
+  useDeleteNotificationMutation,
 } = chatApi;

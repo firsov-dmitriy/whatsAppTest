@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { ChatFields } from './ChatFields';
+import React, { useCallback, useMemo, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { ChatList } from './ChatList';
-import { Box, Grid } from '@mui/material';
-import { MessageList } from './MessageList';
+import { Grid } from '@mui/material';
+import { MessageTab } from './MessageTab';
 
 export type TChatProps = {};
 
@@ -11,11 +10,17 @@ const _Chat = ({}: TChatProps) => {
   const form = useForm();
   const [chatId, setChatId] = useState<string | undefined>();
 
-  const onClick = (chatId: string) => {
-    if (chatId) {
-      setChatId(chatId);
-    }
-  };
+  const memoChatId = useMemo(() => chatId, [chatId]);
+
+  const onClick = useCallback(
+    (chatId: string) => {
+      if (chatId && memoChatId !== chatId) {
+        setChatId(chatId);
+      }
+    },
+    [setChatId],
+  );
+
   return (
     <FormProvider {...form}>
       <Grid container gap={2} flexWrap='nowrap'>
@@ -23,9 +28,7 @@ const _Chat = ({}: TChatProps) => {
           <ChatList onClick={onClick} />
         </Grid>
         <Grid item xs={10}>
-          
-          <MessageList chatId={chatId} />
-          <ChatFields chatId={chatId} />
+          {memoChatId && <MessageTab chatId={memoChatId} />}
         </Grid>
       </Grid>
     </FormProvider>
